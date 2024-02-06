@@ -1,11 +1,8 @@
 package Vista;
-import Controlador.ControladorVentas;
-import Modelo.VentasDAO;
 import javax.accessibility.AccessibleContext;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
@@ -121,14 +118,7 @@ public class FrmVentasTotales extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbProductoActionPerformed
 
-    public static void main(String args[]) {
-        
-        LookAndFeelUtils.setLookAndFeel();
-      
-        java.awt.EventQueue.invokeLater(() -> {
-            new FrmVentasTotales().setVisible(true);
-        });
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<String> cmbAsesor;
@@ -173,13 +163,6 @@ public class FrmVentasTotales extends javax.swing.JFrame {
         this.tblVentas = tblVentas;
     }
 
-    public void setRootPane(JRootPane rootPane) {
-        this.rootPane = rootPane;
-    }
-
-    public void setRootPaneCheckingEnabled(boolean rootPaneCheckingEnabled) {
-        this.rootPaneCheckingEnabled = rootPaneCheckingEnabled;
-    }
 
     public void setAccessibleContext(AccessibleContext accessibleContext) {
         this.accessibleContext = accessibleContext;

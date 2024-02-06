@@ -4,84 +4,71 @@ import Modelo.Venta;
 import Modelo.VentasDAO;
 import Vista.FrmVentasTotales;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
-public class ControladorVentas implements ActionListener {
+public class ControladorVentas {
+    private VentasDAO objetoDAO;
+    private Venta objetoVentas;
+    private FrmVentasTotales frmVentasTotales; // Agregado para mostrar el formulario
 
-    private VentasDAO ventasDAO;
-    private FrmVentasTotales frmVentasTotales;
-    private Venta venta; // Añadido el atributo Venta
-
-    public ControladorVentas(FrmVentasTotales vista, VentasDAO dao) {
-        this.ventasDAO = dao;
-        this.frmVentasTotales = vista;
-        this.venta = new Venta();
-        configurarEventos();
-        cargarDatosIniciales();
+     public ControladorVentas(FrmVentasTotales frmVentasTotales, VentasDAO objetoDAO) {
+        this.frmVentasTotales = frmVentasTotales;
+        this.objetoDAO = objetoDAO;
     }
 
-    private void configurarEventos() {
-        frmVentasTotales.cmbCliente.addActionListener(this);
-        frmVentasTotales.cmbProducto.addActionListener(this);
-        frmVentasTotales.cmbAsesor.addActionListener(this);
+    // Método para mostrar el formulario
+    public void mostrarFrmVentasTotales() {
+        frmVentasTotales.setVisible(true);
     }
 
-    private void cargarDatosIniciales() {
-        // Lógica para cargar datos iniciales en tus ComboBox
-    }
+    public void llenarTabla(JTable tablaDatos, String seleccion, String valorSeleccionado) {
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaDatos.setModel(modeloT);
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String selectedItem = ((javax.swing.JComboBox<?>) e.getSource()).getSelectedItem().toString();
-
-        if (e.getSource() == frmVentasTotales.cmbCliente) {
-            venta.setCliente(selectedItem);
-            cargarVentasPorCliente(venta);
-        } else if (e.getSource() == frmVentasTotales.getCmbProducto()) {
-            venta.setProducto(selectedItem);
-            cargarVentasPorProducto(venta);
-        } else if (e.getSource() == frmVentasTotales.getCmbAsesor()) {
-            venta.setAsesor(selectedItem);
-            cargarVentasPorAsesor(venta);
+        switch (seleccion) {
+            case "CLIENTE":
+                modeloT.addColumn("Producto");
+                modeloT.addColumn("Asesor");
+                modeloT.addColumn("Total Venta");
+                llenarTablaPorCliente(modeloT, valorSeleccionado);
+                break;
+            case "PRODUCTO":
+                modeloT.addColumn("Cliente");
+                modeloT.addColumn("Asesor");
+                modeloT.addColumn("Total Venta");
+                llenarTablaPorProducto(modeloT, valorSeleccionado);
+                break;
+//            case "asesor":
+//                modeloT.addColumn("Cliente");
+//                modeloT.addColumn("Producto");
+//                modeloT.addColumn("Total Venta");
+//                modeloT.addColumn("Comisión");
+//                llenarTablaPorAsesor(modeloT, valorSeleccionado);
+//                break;
+            default:
+                break;
         }
     }
 
-    public void cargarVentasPorCliente(Venta venta) {
-        List<Venta> ventas = ventasDAO.obtenerVentasPorCliente(venta.getCliente());
-        actualizarTabla(ventas);
-    }
-
-    public void cargarVentasPorProducto(Venta venta) {
-        List<Venta> ventas = ventasDAO.obtenerVentasPorProducto(venta.getProducto());
-        actualizarTabla(ventas);
-    }
-
-    public void cargarVentasPorAsesor(Venta venta) {
-        List<Venta> ventas = ventasDAO.obtenerVentasPorAsesor(venta.getAsesor());
-        actualizarTabla(ventas);
-    }
-
-    public void actualizarTabla(List<Venta> ventas) {
-        DefaultTableModel model = (DefaultTableModel) frmVentasTotales.tblVentas.getModel();
-        model.setRowCount(0);
-
+    private void llenarTablaPorCliente(DefaultTableModel modelo, String cliente) {
+        List<Venta> ventas = objetoDAO.obtenerVentasPorCliente(cliente);
         for (Venta venta : ventas) {
-            Object[] rowData = {
-                venta.getProducto(),
-                venta.getAsesor(),
-                venta.getTotalVenta(),
-                venta.getComision()
-            };
-            model.addRow(rowData);
+            Object[] fila = {venta.getProducto(), venta.getAsesor(), venta.getTotalVenta()};
+            modelo.addRow(fila);
         }
     }
 
-    // Método adicional para mostrar mensajes
-    private void mostrarMensaje(String mensaje, String titulo, int tipo) {
-        JOptionPane.showMessageDialog(frmVentasTotales, mensaje, titulo, tipo);
+    private void llenarTablaPorProducto(DefaultTableModel modelo, String producto) {
+        // Implementa lógica similar para llenar la tabla por producto
     }
-}
+
+//    private void llenarTablaPorAsesor(DefaultTableModel modelo, String asesor) {
+//        List<Venta> ventas = objetoDAO.obtenerVentasPorAsesor(asesor);
+//        for (Venta venta : ventas) {
+//            Object[] fila = {venta.getCliente(), venta.getProducto(), venta.getTotalVenta(), venta.getComision()};
+//            modelo.addRow(fila);
+//        }
+    }
+

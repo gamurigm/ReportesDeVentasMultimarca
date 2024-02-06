@@ -1,41 +1,48 @@
 package Modelo;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoCursor;
 import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VentasDAO {
-    private final MongoClient mongoClient;
-    private final MongoDatabase database;
-    private final MongoCollection<Document> ventasCollection;
+    private MongoCollection<Document> coleccion;
 
     public VentasDAO() {
-        this.mongoClient = MongoClients.create("mongodb://localhost:27017");
-        this.database = mongoClient.getDatabase("Multimarca");
-        this.ventasCollection = database.getCollection("Ventas");
+        Conexion objCon = new Conexion();
+        this.coleccion = objCon.getColeccion();
+    }
+
+    public void insertarVenta(Venta venta) {
+        Document documento = new Document();
+        documento.append("cliente", venta.getCliente())
+                .append("producto", venta.getProducto())
+                .append("asesor", venta.getAsesor())
+                .append("totalVenta", venta.getTotalVenta())
+                .append("comision", venta.getComision());
+        coleccion.insertOne(documento);
     }
 
     public List<Venta> obtenerVentasPorCliente(String cliente) {
-        // Implementa lógica para obtener ventas por cliente desde MongoDB
-        // Puedes usar el método find() con un filtro para cliente
-        // Convierte los documentos a instancias de la clase Venta y devuelve la lista
-        return new ArrayList<>(); // Reemplaza con la lógica real
+        List<Venta> ventas = new ArrayList<>();
+        Document consulta = new Document("cliente", cliente);
+        
+        try (MongoCursor<Document> cursor = coleccion.find(consulta).iterator()) {
+            while (cursor.hasNext()) {
+                Document documento = cursor.next();
+                Venta venta = new Venta(
+                        documento.getString("cliente"),
+                        documento.getString("producto"),
+                        documento.getString("asesor"),
+                        documento.getDouble("totalVenta"),
+                        documento.getDouble("comision")
+                );
+                ventas.add(venta);
+            }
+        }
+
+        return ventas;
     }
-
-    public List<Venta> obtenerVentasPorProducto(String producto) {
-        // Implementa lógica similar para obtener ventas por producto
-        return new ArrayList<>(); // Reemplaza con la lógica real
-    }
-
-    public List<Venta> obtenerVentasPorAsesor(String asesor) {
-        // Implementa lógica similar para obtener ventas por asesor
-        return new ArrayList<>(); // Reemplaza con la lógica real
-    }
-
-
 }
