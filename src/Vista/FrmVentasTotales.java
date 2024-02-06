@@ -1,9 +1,21 @@
 package Vista;
+import Controlador.ControladorVentas;
+import Modelo.VentasDAO;
+import javax.accessibility.AccessibleContext;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
 
 public class FrmVentasTotales extends javax.swing.JFrame {
-
-    public FrmVentasTotales() { initComponents(); }
-
+    
+    public FrmVentasTotales() {
+        initComponents();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -27,6 +39,11 @@ public class FrmVentasTotales extends javax.swing.JFrame {
         });
 
         cmbProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PRUDUCTO", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProductoActionPerformed(evt);
+            }
+        });
 
         cmbAsesor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ASESOR", "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -100,6 +117,10 @@ public class FrmVentasTotales extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbClienteActionPerformed
 
+    private void cmbProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProductoActionPerformed
+
     public static void main(String args[]) {
         
         LookAndFeelUtils.setLookAndFeel();
@@ -110,13 +131,72 @@ public class FrmVentasTotales extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cmbAsesor;
+    public javax.swing.JComboBox<String> cmbAsesor;
     private javax.swing.JComboBox<String> cmbCliente;
-    private javax.swing.JComboBox<String> cmbProducto;
+    public javax.swing.JComboBox<String> cmbProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     public javax.swing.JTable tblVentas;
     // End of variables declaration//GEN-END:variables
+
+    public void setCmbAsesor(JComboBox<String> cmbAsesor) {
+        this.cmbAsesor = cmbAsesor;
+    }
+
+    public void setCmbCliente(JComboBox<String> cmbCliente) {
+        this.cmbCliente = cmbCliente;
+    }
+
+    public void setCmbProducto(JComboBox<String> cmbProducto) {
+        this.cmbProducto = cmbProducto;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public void setjSpinner1(JSpinner jSpinner1) {
+        this.jSpinner1 = jSpinner1;
+    }
+
+    public void setTblVentas(JTable tblVentas) {
+        this.tblVentas = tblVentas;
+    }
+
+    public void setRootPane(JRootPane rootPane) {
+        this.rootPane = rootPane;
+    }
+
+    public void setRootPaneCheckingEnabled(boolean rootPaneCheckingEnabled) {
+        this.rootPaneCheckingEnabled = rootPaneCheckingEnabled;
+    }
+
+    public void setAccessibleContext(AccessibleContext accessibleContext) {
+        this.accessibleContext = accessibleContext;
+    }
+
+     public JComboBox<String> getCmbCliente() {
+        return cmbCliente;
+    }
+
+    public JComboBox<String> getCmbProducto() {
+        return cmbProducto;
+    }
+
+    public JComboBox<String> getCmbAsesor() {
+        return cmbAsesor;
+    }
+
+   
+
 }
