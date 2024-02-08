@@ -15,6 +15,28 @@ public class ControladorVentas {
     public ControladorVentas(FrmVentasTotales frmVentasTotales, VentasDAO objetoDAO) {
         this.frmVentasTotales = frmVentasTotales;
         this.objetoDAO = objetoDAO;
+        
+        List<String> clientes = objetoDAO.obtenerClientes();
+        frmVentasTotales.getCmbCliente().removeAllItems();
+        frmVentasTotales.getCmbCliente().addItem("CLIENTE");
+        for (String cliente : clientes) {
+            frmVentasTotales.getCmbCliente().addItem(cliente);
+        }
+        
+        List<String> asesores = objetoDAO.obtenerAsesores();
+        frmVentasTotales.getCmbAsesor().removeAllItems();
+        frmVentasTotales.getCmbAsesor().addItem("ASESOR");
+        for (String asesor : asesores) {
+            frmVentasTotales.getCmbAsesor().addItem(asesor);
+        }
+
+        List<String> productos = objetoDAO.obtenerProductos();
+        frmVentasTotales.getCmbProducto().removeAllItems();
+        frmVentasTotales.getCmbProducto().addItem("PRODUCTO");
+        for (String producto : productos) {
+            frmVentasTotales.getCmbProducto().addItem(producto);
+        }
+
 
         frmVentasTotales.getCmbCliente().addActionListener(e -> {
             String clienteSeleccionado = (String) frmVentasTotales.getCmbCliente().getSelectedItem();
@@ -28,7 +50,7 @@ public class ControladorVentas {
 
         frmVentasTotales.getCmbAsesor().addActionListener(e -> {
             String asesorSeleccionado = (String) frmVentasTotales.getCmbAsesor().getSelectedItem();
-            llenarTabla(frmVentasTotales.tblVentas, "asesor", asesorSeleccionado);
+            llenarTabla(frmVentasTotales.tblVentas, "ASESOR", asesorSeleccionado);
         });
     }
 
@@ -74,12 +96,13 @@ public class ControladorVentas {
     }
 
     private void llenarTablaPorProducto(DefaultTableModel modelo, String producto) {
-        List<Venta> ventas = objetoDAO.obtenerVentasPorProducto(producto);
-        for (Venta venta : ventas) {
-            Object[] fila = {venta.getCliente(), venta.getAsesor(), venta.getValor(), venta.getComision()};
-            modelo.addRow(fila);
-        }
+    List<Venta> ventas = objetoDAO.obtenerVentasPorProducto(producto);
+    for (Venta venta : ventas) {
+        Object[] fila = {venta.getCliente(), venta.getAsesor(), venta.getValor(), venta.getComision()};
+        modelo.addRow(fila);
     }
+}
+
 
     private void llenarTablaPorAsesor(DefaultTableModel modelo, String asesor) {
         List<Venta> ventas = objetoDAO.obtenerVentasPorAsesor(asesor);
@@ -88,4 +111,8 @@ public class ControladorVentas {
             modelo.addRow(fila);
         }
     }
+    
+  
+    
+    
 }

@@ -16,7 +16,7 @@ public class Venta {
     }
 
     public Venta() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
     public String getCliente() {
@@ -65,6 +65,6 @@ public class Venta {
     }
 
     public Object getTotalVenta() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return 0;
     }
 }
