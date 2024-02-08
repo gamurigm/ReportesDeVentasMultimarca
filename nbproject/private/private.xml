@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/gamur/Documentos/POO/MultimarcaVentasApp/src/Modelo/Conexion.java</file>
             <file>file:/C:/Users/gamur/Documentos/POO/MultimarcaVentasApp/src/Vista/FrmVentasTotales.java</file>
+            <file>file:/C:/Users/gamur/Documentos/POO/MultimarcaVentasApp/</file>
             <file>file:/C:/Users/gamur/Documentos/POO/MultimarcaVentasApp/src/Modelo/ReporteVentas.java</file>
             <file>file:/C:/Users/gamur/Documentos/POO/MultimarcaVentasApp/src/Modelo/VentasDAO.java</file>
-            <file>file:/C:/Users/gamur/Documentos/POO/MultimarcaVentasApp/src/Modelo/Cliente.java</file>
+            <file>file:/C:/Users/gamur/Documentos/POO/MultimarcaVentasApp/src/Modelo/Venta.java</file>
             <file>file:/C:/Users/gamur/Documentos/POO/MultimarcaVentasApp/src/Controlador/ControladorVentas.java</file>
-            <file>file:/C:/Users/gamur/Documentos/POO/MultimarcaVentasApp/src/Modelo/Producto.java</file>
         </group>
     </open-files>
 </project-private>
