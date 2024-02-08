@@ -10,11 +10,10 @@ public class ReporteVentas {
         LookAndFeelUtils.setLookAndFeel();
       
         java.awt.EventQueue.invokeLater(() -> {
-            FrmVentasTotales frmVentasTotales = new FrmVentasTotales();  // Crear la instancia de la forma
-            VentasDAO ventasDAO = new VentasDAO();  // Crear la instancia del DAO
-            ControladorVentas controladorVentas = new ControladorVentas(frmVentasTotales, ventasDAO);  // Crear la instancia del controlador
-            
-            frmVentasTotales.setVisible(true);  // Hacer visible la forma
+            FrmVentasTotales frmVentasTotales = new FrmVentasTotales();  
+            VentasDAO ventasDAO = new VentasDAO();  
+            ControladorVentas controladorVentas = new ControladorVentas(frmVentasTotales, ventasDAO);  
+            frmVentasTotales.setVisible(true); 
         });
     }
 }

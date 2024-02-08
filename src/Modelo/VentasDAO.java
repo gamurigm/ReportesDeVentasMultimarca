@@ -20,7 +20,7 @@ public class VentasDAO {
         documento.append("cliente", venta.getCliente())
                 .append("producto", venta.getProducto())
                 .append("asesor", venta.getAsesor())
-                .append("totalVenta", venta.getTotalVenta())
+                .append("valor", venta.getValor())
                 .append("comision", venta.getComision());
         coleccion.insertOne(documento);
     }
@@ -28,7 +28,7 @@ public class VentasDAO {
     public List<Venta> obtenerVentasPorCliente(String cliente) {
         List<Venta> ventas = new ArrayList<>();
         Document consulta = new Document("cliente", cliente);
-        
+
         try (MongoCursor<Document> cursor = coleccion.find(consulta).iterator()) {
             while (cursor.hasNext()) {
                 Document documento = cursor.next();
@@ -36,7 +36,7 @@ public class VentasDAO {
                         documento.getString("cliente"),
                         documento.getString("producto"),
                         documento.getString("asesor"),
-                        documento.getDouble("totalVenta"),
+                        documento.getDouble("valor"),
                         documento.getDouble("comision")
                 );
                 ventas.add(venta);
@@ -45,4 +45,47 @@ public class VentasDAO {
 
         return ventas;
     }
+
+    public List<Venta> obtenerVentasPorProducto(String producto) {
+        List<Venta> ventas = new ArrayList<>();
+        Document consulta = new Document("producto", producto);
+
+        try (MongoCursor<Document> cursor = coleccion.find(consulta).iterator()) {
+            while (cursor.hasNext()) {
+                Document documento = cursor.next();
+                Venta venta = new Venta(
+                        documento.getString("cliente"),
+                        documento.getString("producto"),
+                        documento.getString("asesor"),
+                        documento.getDouble("valor"),
+                        documento.getDouble("comision")
+                );
+                ventas.add(venta);
+            }
+        }
+
+        return ventas;
+    }
+
+    public List<Venta> obtenerVentasPorAsesor(String asesor) {
+        List<Venta> ventas = new ArrayList<>();
+        Document consulta = new Document("asesor", asesor);
+
+        try (MongoCursor<Document> cursor = coleccion.find(consulta).iterator()) {
+            while (cursor.hasNext()) {
+                Document documento = cursor.next();
+                Venta venta = new Venta(
+                        documento.getString("cliente"),
+                        documento.getString("producto"),
+                        documento.getString("asesor"),
+                        documento.getDouble("valor"),
+                        documento.getDouble("comision")
+                );
+                ventas.add(venta);
+            }
+        }
+
+        return ventas;
+    }
+
 }
