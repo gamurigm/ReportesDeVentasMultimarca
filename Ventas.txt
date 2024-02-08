@@ -1,0 +1,86 @@
+db.Ventas.insertMany([
+  {
+    cliente: "Goodyear",
+    producto: "Arroz",
+    asesor: "Juan",
+    valor: 3400.00,
+    comision: 23
+  },
+  {
+    cliente: "Wallmart",
+    producto: "Arroz",
+    asesor: "Lina",
+    valor: 6700,
+    comision: 45
+  },
+  {
+    cliente: "Goodyear",
+    producto: "Azucar",
+    asesor: "Ana",
+    valor: 10900,
+    comision: 78
+  },
+  {
+    cliente: "Unilever",
+    producto: "Lentejas",
+    asesor: "Maria",
+    valor: 23000,
+    comision: 90
+  },
+  {
+    cliente: "Wallmart",
+    producto: "Azucar",
+    asesor: "Maria",
+    valor: 7600,
+    comision: 100
+  },
+  {
+    cliente: "Wallmart",
+    producto: "Frejol",
+    asesor: "Maria",
+    valor: 4300,
+    comision: 210
+  },
+  {
+    cliente: "Goodyear",
+    producto: "Frejol",
+    asesor: "Maria",
+    valor: 2300,
+    comision: 65
+  },
+  {
+    cliente: "Unilever",
+    producto: "Azucar",
+    asesor: "Juan",
+    valor: 6700,
+    comision: 70
+  },
+  {
+    cliente: "Goodyear",
+    producto: "Arroz",
+    asesor: "Lina",
+    valor: 4300,
+    comision: 84
+  },
+  {
+    cliente: "Goodyear",
+    producto: "Lentejas",
+    asesor: "Maria",
+    valor: 1800,
+    comision: 24
+  },
+  {
+    cliente: "Wallmart",
+    producto: "Frejol",
+    asesor: "Lina",
+    valor: 45000,
+    comision: 10
+  },
+  {
+    cliente: "Unilever",
+    producto: "Arroz",
+    asesor: "Lina",
+    valor: 3200,
+    comision: 97
+  }
+]);
