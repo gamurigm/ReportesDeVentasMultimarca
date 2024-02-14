@@ -9,8 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
 public class ControladorVentas {
-    private VentasDAO objetoDAO;
-    private FrmVentasTotales frmVentasTotales;
+    private final VentasDAO objetoDAO;
+    private final FrmVentasTotales frmVentasTotales;
 
     public ControladorVentas(FrmVentasTotales frmVentasTotales, VentasDAO objetoDAO) {
         this.frmVentasTotales = frmVentasTotales;
@@ -103,16 +103,11 @@ public class ControladorVentas {
     }
 }
 
-
     private void llenarTablaPorAsesor(DefaultTableModel modelo, String asesor) {
         List<Venta> ventas = objetoDAO.obtenerVentasPorAsesor(asesor);
         for (Venta venta : ventas) {
             Object[] fila = {venta.getCliente(), venta.getProducto(), venta.getValor(), venta.getComision()};
             modelo.addRow(fila);
         }
-    }
-    
-  
-    
-    
+    } 
 }

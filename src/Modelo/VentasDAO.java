@@ -77,19 +77,21 @@ public class VentasDAO {
 
                 // Verifica si el valor es una cadena o un número
                 double totalVentaResultado;
+
                 Object totalVentaObject = documento.get("valor");
+
                 if (totalVentaObject instanceof Number) {
-                    totalVentaResultado = ((Number) totalVentaObject).doubleValue();
+                totalVentaResultado = ((Number) totalVentaObject).doubleValue();
                 } else if (totalVentaObject instanceof String) {
-                    try {
-                        totalVentaResultado = Double.parseDouble((String) totalVentaObject);
-                    } catch (NumberFormatException e) {
-                        // Maneja la excepción si la conversión no es posible
-                        totalVentaResultado = 0.0;
-                    }
-                } else {
-                    // Puedes manejar otros tipos de datos aquí según sea necesario
+                try {
+                    totalVentaResultado = Double.parseDouble((String) totalVentaObject);
+                } catch (NumberFormatException e) {
+                    // Maneja la excepción si la conversión no es posible
                     totalVentaResultado = 0.0;
+                }
+                } else {
+                // Puedes manejar otros tipos de datos aquí según sea necesario
+                totalVentaResultado = 0.0;
                 }
 
                 // Verifica si el valor es una cadena o un número
